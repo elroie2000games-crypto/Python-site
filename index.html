@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Python Studio</title>
+
+	<link rel="stylesheet" href="style.css">
+
+
+	<!-- Monaco Editor -->
+	<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.js"></script>
+
+</head>
+
+
+<body>
+
+
+	<!-- Sidebar -->
+
+	<div id="sidebar">
+
+
+		<h1>
+			🐍 Python Studio
+		</h1>
+
+
+
+		<input
+			type="text"
+			id="search"
+			placeholder="חפש פרויקט...">
+
+
+
+		<button id="newProject">
+			➕ פרויקט חדש
+		</button>
+
+
+
+		<button id="uploadProject">
+			📂 העלה פרויקט
+		</button>
+
+
+
+		<input
+			type="file"
+			id="fileInput"
+			accept=".py"
+			hidden>
+
+
+
+		<hr>
+
+
+
+		<h2>
+			📁 הפרויקטים שלי
+		</h2>
+
+
+
+		<div id="projectList"></div>
+
+
+	</div>
+
+
+
+
+
+	<!-- Main -->
+
+	<div id="main">
+
+
+		<div id="toolbar">
+
+
+			<input
+				type="text"
+				id="projectName"
+				placeholder="שם הפרויקט">
+
+
+
+			<button id="saveBtn">
+				💾 שמור
+			</button>
+
+
+
+			<button id="runBtn">
+				▶ הרץ
+			</button>
+
+
+
+			<button id="downloadBtn">
+				⬇ הורד
+			</button>
+
+
+
+			<button id="deleteBtn">
+				🗑 מחק
+			</button>
+
+
+		</div>
+
+
+
+
+
+		<div id="pythonStatus">
+			⏳ טוען Python...
+		</div>
+
+
+
+
+
+		<div id="editorContainer">
+
+
+			<div id="editor"></div>
+
+
+
+
+
+			<div id="rightPanel">
+
+
+				<h3>
+					🐢 Turtle
+				</h3>
+
+
+
+				<canvas
+					id="turtleCanvas"
+					width="800"
+					height="600">
+				</canvas>
+
+
+
+
+
+				<h3>
+					💻 פלט
+				</h3>
+
+
+
+				<pre id="output"></pre>
+
+
+			</div>
+
+
+		</div>
+
+
+	</div>
+
+
+
+
+
+	<script>
+
+		console.log(
+			"Monaco require:",
+			typeof require
+		);
+
+	</script>
+
+
+
+
+
+	<!-- Pyodide -->
+
+	<script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"></script>
+
+
+
+
+
+	<!-- Your JavaScript -->
+
+	<script src="script.js"></script>
+
+
+
+</body>
+
+</html>
