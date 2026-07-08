@@ -386,10 +386,11 @@ document.getElementById("runBtn").onclick = async function(){
 
 	catch(error){
 
-		output.innerHTML =
-		"❌ שגיאה:\n" + error;
-
-	}
+	console.error(
+		"❌ שגיאה בטעינת Python:",
+		error.message,
+		error
+	);
 
 
 };
