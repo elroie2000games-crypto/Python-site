@@ -1,3 +1,5 @@
+window.onload = function(){
+
 let projects = JSON.parse(localStorage.getItem("pythonProjects")) || {};
 
 let currentProject = null;
@@ -373,18 +375,14 @@ document.getElementById("runBtn").onclick = async function(){
 
 
 		let result =
-		await pyodide.runPythonAsync(code);
+        await pyodide.runPythonAsync(code);
 
 
+        if(result !== undefined){
 
-		if(result !== undefined){
-
-			output.innerHTML += result;
-
-		}
-
-
-	}
+	        output.innerHTML += result;
+        }
+}
 
 	catch(error){
 
@@ -405,53 +403,7 @@ document.getElementById("runBtn").onclick = async function(){
    טעינת Pyodide
 ========================= */
 
-async function loadPython(){
 
-
-	try{
-
-
-		console.log("טוען Python...");
-
-
-
-		pyodide =
-		await loadPyodide({
-
-			indexURL:
-			"https://cdn.jsdelivr.net/pyodide/v0.26.2/full/"
-
-		});
-
-
-
-		console.log("Python מוכן!");
-
-
-
-		await upgradeTurtle();
-
-
-
-	}
-
-	catch(err){
-
-
-		console.error(
-			"שגיאה בטעינת Python:",
-			err
-		);
-
-
-	}
-
-
-}
-
-
-
-startPython();
 
 let turtleCtx =
 document.getElementById("turtleCanvas").getContext("2d");
@@ -804,10 +756,14 @@ if(runButton){
    טעינת Python משופרת
 ========================= */
 
+let status =
+document.getElementById("pythonStatus");
+
 async function startPython(){
 
-	try{
+	console.log("🚀 startPython התחילה");
 
+	try{
 
 		if(status){
 
@@ -817,18 +773,24 @@ async function startPython(){
 		}
 
 
+		console.log("מתחיל Pyodide");
+
 
 		pyodide = await loadPyodide({
 
 			indexURL:
-			"https://cdn.jsdelivr.net/pyodide/v0.26.2/full/"
+			"https://cdn.jsdelivr.net/pyodide/v0.28.2/full/"
 
 		});
 
 
+		console.log("Pyodide נטען בהצלחה");
+
 
 		await upgradeTurtle();
 
+
+		console.log("🐢 Turtle מוכן");
 
 
 		if(status){
@@ -839,7 +801,6 @@ async function startPython(){
 		}
 
 
-
 		if(runButton){
 
 			runButton.disabled = false;
@@ -847,15 +808,17 @@ async function startPython(){
 		}
 
 
-
-		console.log(
-			"Python מוכן!"
-		);
-
+		console.log("Python מוכן!");
 
 	}
 
+
 	catch(error){
+
+		console.error(
+			"❌ שגיאה בטעינת Python:",
+			error
+		);
 
 
 		if(status){
@@ -866,13 +829,21 @@ async function startPython(){
 		}
 
 
-		console.error(error);
+		if(runButton){
 
+			runButton.disabled = true;
+
+		}
 
 	}
 
 }
 
 
+require(["vs/editor/editor.main"], function () {
 
-startPython();
+	console.log("📌 Monaco מוכן");
+
+	startPython();
+
+});}
