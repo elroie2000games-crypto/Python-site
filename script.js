@@ -7,6 +7,9 @@ let editor = null;
 let pyodide = null;
 
 
+let outputBuffer = "";
+
+
 /* =========================
    Monaco Editor
 ========================= */
@@ -356,45 +359,33 @@ document.getElementById("downloadBtn").onclick = function(){
 document.getElementById("runBtn").onclick = async function(){
 
 	if(!pyodide){
-
 		return;
-
 	}
-
 
 	let code = editor.getValue();
 
-	let output =
-	document.getElementById("output");
-
+	let output = document.getElementById("output");
 
 	output.innerHTML = "";
-
+	outputBuffer = "";
 
 	try{
 
+		await pyodide.runPythonAsync(code);
 
-		let result =
-        await pyodide.runPythonAsync(code);
+		output.innerHTML = outputBuffer;
 
-
-        if(result !== undefined){
-
-	        output.innerHTML += result;
-        }
-}
+	}
 
 	catch(error){
 
-	console.error(
-		"❌ שגיאה בהרצת Python:",
-		error.message,
-		error
-	);
+		output.innerHTML = error;
 
-}
+		console.error(error);
 
-}; // ← סוגר את runBtn.onclick
+	}
+
+};
 
 
 
@@ -792,6 +783,11 @@ async function startPython(){
 
 		});
 
+		pyodide.setStdout({
+			batched: (msg) => {
+				outputBuffer += msg + "\n";
+			}
+		});
 
 		console.log("Pyodide נטען בהצלחה");
 
