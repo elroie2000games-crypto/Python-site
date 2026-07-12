@@ -193,14 +193,18 @@
 
 
 
+	<!-- Monaco -->
+	<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.js"></script>
+
 	<!-- Pyodide -->
 	<script src="https://cdn.jsdelivr.net/pyodide/v0.28.2/full/pyodide.js"></script>
-
 
 	<!-- הקוד שלך -->
 	<script src="script.js"></script>
 
-
+	<script>
+	console.log("Pyodide:", typeof loadPyodide);
+	</script>
 
 </body>
 
