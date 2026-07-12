@@ -35,8 +35,8 @@ print("Hello Python!")
 		}
 	);
 
-
 	loadProjects();
+	startPython();
 
 });
 
@@ -387,13 +387,14 @@ document.getElementById("runBtn").onclick = async function(){
 	catch(error){
 
 	console.error(
-		"❌ שגיאה בטעינת Python:",
+		"❌ שגיאה בהרצת Python:",
 		error.message,
 		error
 	);
 
+}
 
-};
+}; // ← סוגר את runBtn.onclick
 
 
 
@@ -840,11 +841,4 @@ async function startPython(){
 
 }
 
-
-require(["vs/editor/editor.main"], function () {
-
-	console.log("📌 Monaco מוכן");
-
-	startPython();
-
-});}
+}
