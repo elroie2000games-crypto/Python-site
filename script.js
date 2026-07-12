@@ -627,8 +627,15 @@ function turtleWidth(size){
 
 }
 
-
-
+window.moveTurtle = moveTurtle;
+window.turnTurtle = turnTurtle;
+window.turtleCircle = turtleCircle;
+window.clearTurtle = clearTurtle;
+window.setTurtleColor = setTurtleColor;
+window.penUp = penUp;
+window.penDown = penDown;
+window.turtleGoto = turtleGoto;
+window.turtleWidth = turtleWidth;
 
 /* =========================
    חיבור Python
